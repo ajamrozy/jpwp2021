@@ -11,18 +11,22 @@ public class Client {
     private final String host;
     private final int port;
 
-    public Client(String mainDir,int port, String host){
-            this.mainDir = mainDir;
-            this.port=port;
-            this.host=host;
+    public Client(String mainDir, int port, String host){
+        this.mainDir = mainDir;
+        this.port = port;
+        this.host = host;
     }
 
     public void send(Object obj){
-        if(obj != null) clientThread.send(obj);
-        else System.out.println("Client.send(): 'obj' is null");
+        if(obj != null) {
+            clientThread.send(obj);
+        }
+        else {
+            System.out.println("Client.send(): 'obj' is null");
+        }
     }
 
-	public void startTransmission(){
+    public void startTransmission(){
         try {
             socket = new Socket(host, port);
         } catch (IOException e) {
@@ -37,8 +41,8 @@ public class Client {
         client.startTransmission();
 
         //Demo start --------------------------------------------------
-        FileContainer fileContainer = new FileContainer();
         System.out.println("Wysyłam plik 1.png");
+        FileContainer fileContainer = new FileContainer();
         fileContainer.setFilename("1.png");
         fileContainer.setCmd("send");
         client.send(fileContainer);
@@ -49,7 +53,7 @@ public class Client {
         fileContainer2.setCmd("send");
         client.send(fileContainer2);
         // Demo end ----------------------------------------------------
-		System.out.println("--------------------------------------------");
+        System.out.println("--------------------------------------------");
 
         Message message = new Message("Zapisz","wiadomosc");
         client.send(message);

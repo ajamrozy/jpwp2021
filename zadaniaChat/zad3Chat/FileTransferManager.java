@@ -1,4 +1,4 @@
-package zadaniaChat.zad2Chat;
+package zadaniaChat.zad3Chat;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -13,7 +13,6 @@ public class FileTransferManager{
             output = new ObjectOutputStream(socket.getOutputStream());
             output.writeObject(obj);
             output.flush();
-            //output.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,7 +33,6 @@ public class FileTransferManager{
         }
         return null;
     }
-
     public void startReading() {
         Runnable listener = () -> {
             Object obj;

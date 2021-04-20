@@ -1,9 +1,6 @@
 package zadaniaChat.zad2Chat;
-import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Set;
 
 public class ServerThread extends FileTransferManager{
     public ServerThread(Socket socket) {
@@ -13,11 +10,16 @@ public class ServerThread extends FileTransferManager{
 
     public void takeAction(Object obj){
         switch (obj.getClass().getName()){
-            case "FileContainer": takeAction((FileContainer) obj);
+
+            case "FileContainer": {
+                takeAction((FileContainer) obj);
                 break;
-            // ...
-            case "Message": takeAction((Message) obj);
+            }
+            //...
+            case "Message": {
+                takeAction((Message) obj);
                 break;
+            }
         }
     }
 
@@ -41,15 +43,20 @@ public class ServerThread extends FileTransferManager{
 
     public void takeAction(Message message){
         switch (message.getCmd()){
-            case "Zapisz":{
+            case "Zapisz": {
                 Functions.save(message,message.getFilename());
                 System.out.println("ServerThread: Zapisano");
-				System.out.println("--------------------------------------------");
+                System.out.println("--------------------------------------------");
+                break;
             }
-            break;
+
+            case "Czytaj": {
+                Message message1 = (Message) Functions.getObject(message.getFilename());
+                send(message1);
+                break;
+            }
         }
     }
-
 
     @Override
     public void stop(){
@@ -62,5 +69,4 @@ public class ServerThread extends FileTransferManager{
             e.printStackTrace();
         }
     }
-    
 }

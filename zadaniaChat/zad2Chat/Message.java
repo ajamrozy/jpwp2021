@@ -9,7 +9,7 @@ public class Message implements Serializable {
         this.cmd = cmd;
         this.filename=filename;
     }
-    // ---------------- getters & setters -----------------
+
 
     public String getCmd() {
         return cmd;
@@ -22,6 +22,7 @@ public class Message implements Serializable {
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
     public void setCmd(String cmd) {
         this.cmd = cmd;
     }

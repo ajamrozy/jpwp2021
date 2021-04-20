@@ -1,5 +1,6 @@
-package zadaniaChat.zad2Chat;
+package zadaniaChat.zad3Chat;
 import java.io.*;
+
 
 public class Functions {
     public static void save(Object object, String filepath){
@@ -29,7 +30,9 @@ public class Functions {
         }
         return object;
     }
+
 }
+
 
 
 
